@@ -80,7 +80,7 @@ const Hero = () => {
     });
   });
 
-  const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
+  const getVideoSrc = (index) => `videos/animal${index}.mp4`;
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
@@ -139,24 +139,24 @@ const Hero = () => {
             onLoadedData={handleVideoLoad}
           />
         </div>
-
         <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-blue-75">
-          G<b>a</b>ming
+          Wil<b>d</b> Africa
         </h1>
 
         <div className="absolute left-0 top-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
             <h1 className="special-font hero-heading">
-              redefi <b>n</b>e
+              The H<b>e</b>art of the S<b>a</b>v<b>a</b>nnah
             </h1>
 
             <p className="mb-5 max-w-64 font-robert-regular text-blue-100">
-              Enter the Metagame Layer <br /> Unleash the Play Economy
+              Explore the wonders of Africa’s untamed lands, <br /> where nature
+              rules in all its majesty.
             </p>
 
             <Button
               id="watch-trailer"
-              title="Watch Trailer"
+              title="Discover More"
               leftIcon={<TiLocationArrow />}
               containerClass="bg-yellow-300 flex-center gap-1"
             />

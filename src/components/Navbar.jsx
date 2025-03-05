@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import { TiLocationArrow } from "react-icons/ti";
 import { useWindowScroll } from "react-use";
 import gsap from "gsap";
+import { Link } from "react-router-dom";
 
 const navItems = ["Nexus", "Vault", "Prologue", "About", "Contact"];
 
@@ -61,7 +62,9 @@ const Navbar = () => {
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
           <div className="flex items-center gap-7">
-            <img src="/img/logo.png" alt="logo" className="w-10" />
+            <Link to="/">
+              <img src="/img/logo.png" alt="logo" className="w-10" />
+            </Link>
 
             <Button
               id="product-button"
@@ -74,13 +77,13 @@ const Navbar = () => {
           <div className="flex h-full items-center">
             <div className="hidden md:block">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item}
-                  href={`${item.toLowerCase()}`}
+                  to={`/${item.toLowerCase()}`}
                   className="nav-hover-btn"
                 >
                   {item}
-                </a>
+                </Link>
               ))}
             </div>
 

@@ -1,23 +1,20 @@
-import About from "./components/About";
-import Features from "./components/Features";
-import Hero from "./components/Hero";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Story from "./components/Story";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Nexus from "./pages/nexus/Nexus";
+import Vault from "./pages/vault/Vault";
 
-function App() {
+const App = () => {
   return (
-    <main className="relative min-h-screen w-screen overflow-x-hidden">
+    <>
       <Navbar />
-      <Hero />
-      <About />
-      <Features />
-      <Story />
-      <Contact />
-      <Footer />
-    </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/nexus" element={<Nexus />} />
+        <Route path="/vault" element={<Vault />} />
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;

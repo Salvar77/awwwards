@@ -37,7 +37,7 @@ const About = () => {
         />
 
         <div className="about-subtext">
-          <p>The Game of Games begins, are you ready?</p>
+          <p>The Africa Smashes now, are you ready?</p>
           <p>Awwwards unites every plater from countless games and platforms</p>
         </div>
       </div>
@@ -45,7 +45,7 @@ const About = () => {
       <div className="h-dvh w-screen" id="clip">
         <div className="mask-clip-path about-image">
           <img
-            src="img/about.webp"
+            src="img/lampart.jpg"
             alt="Background"
             className="absolute left-0 top-0 size-full object-cover"
           />
