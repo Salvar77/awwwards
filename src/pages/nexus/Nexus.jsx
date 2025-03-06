@@ -40,7 +40,7 @@ const Nexus = () => {
 
     // 🔥 Animacja wejścia dla obu wideo
     gsap.to([videoRef1.current, videoRef2.current], {
-      scale: 1.05, // Delikatne powiększenie
+      scale: 1.05,
       opacity: 1,
       duration: 1.5,
       ease: "power2.out",

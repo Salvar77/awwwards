@@ -42,7 +42,7 @@ const About = () => {
 
         <div className="about-subtext">
           <p>The Africa Smashes now, are you ready?</p>
-          <p>Awwwards unites every player from countless games and platforms</p>
+          <p>Experience the raw beauty and wonders of the wild continent.</p>
         </div>
       </div>
 
