@@ -7,14 +7,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   useGSAP(() => {
+    // Wykrywanie urządzenia mobilnego (np. szerokość ekranu < 768px)
+    const isMobile = window.innerWidth < 768;
+
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: "#clip",
-        start: "center center",
-        end: "+=800 center",
+        start: isMobile ? "top top" : "center center",
+        end: isMobile ? "+=400 top" : "+=800 center",
         scrub: 0.5,
-        pin: true,
-        pinSpacing: true,
+        pin: !isMobile, // Na mobile nie przypinamy sekcji
+        pinSpacing: !isMobile,
       },
     });
 
@@ -24,6 +27,7 @@ const About = () => {
       borderRadius: 0,
     });
   });
+
   return (
     <div id="about" className="min-h-screen w-screen">
       <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
@@ -38,7 +42,7 @@ const About = () => {
 
         <div className="about-subtext">
           <p>The Africa Smashes now, are you ready?</p>
-          <p>Awwwards unites every plater from countless games and platforms</p>
+          <p>Awwwards unites every player from countless games and platforms</p>
         </div>
       </div>
 

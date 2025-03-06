@@ -43,7 +43,6 @@ const Navbar = () => {
 
   const toggleAudioIndicator = () => {
     setIsAudioPlaying((prev) => !prev);
-
     setIsIndicatorActive((prev) => !prev);
   };
 
@@ -54,6 +53,7 @@ const Navbar = () => {
       audioElementRef.current.pause();
     }
   }, [isAudioPlaying]);
+
   return (
     <div
       ref={navContainerRef}
@@ -70,12 +70,14 @@ const Navbar = () => {
               id="product-button"
               title="Products"
               rightIcon={<TiLocationArrow />}
-              containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
+              // Usunięto "hidden" żeby był widoczny na mobile
+              containerClass="bg-blue-50 flex items-center justify-center gap-1"
             />
           </div>
 
           <div className="flex h-full items-center">
-            <div className="hidden md:block">
+            {/* Zmienione z "hidden md:block" na "flex" */}
+            <div className="flex">
               {navItems.map((item) => (
                 <Link
                   key={item}
