@@ -28,6 +28,7 @@ const VideoCard = ({ src, title, description }) => {
         loop
         muted
         playsInline
+        preload="metadata"
         className="size-full object-cover object-center"
       />
 
