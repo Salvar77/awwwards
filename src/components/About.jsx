@@ -21,7 +21,7 @@ const About = () => {
       },
     });
 
-    clipAnimation.to(".mask-clip-path", {
+    clipAnimation.to(".mask-clip-path-about", {
       width: "100vw",
       height: "100vh",
       borderRadius: 0,
@@ -46,8 +46,8 @@ const About = () => {
         </div>
       </div>
 
-      <div className="h-dvh w-screen" id="clip">
-        <div className="mask-clip-path about-image">
+      <div className="h-dvh w-screen relative" id="clip">
+        <div className="mask-clip-path-about about-image">
           <img
             src="img/lampart.jpg"
             alt="Background"
