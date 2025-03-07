@@ -12,25 +12,23 @@ const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
 
-  // Zmieniamy nazwę na bardziej uniwersalną
   const [loadedAssets, setLoadedAssets] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Stan określający, czy jesteśmy na "mobile" (< 992px)
   const [isMobile, setIsMobile] = useState(false);
+
+  const [showMiniOnMobile, setShowMiniOnMobile] = useState(false);
 
   const totalMedia = 4;
   const nextMediaRef = useRef(null);
 
-  // Funkcja do pobierania ścieżki do wideo
   const getVideoSrc = (index) => `videos/animal${index}.mp4`;
-  // Funkcja do pobierania ścieżki do obrazów
+
   const getImageSrc = (index) => {
     const validIndex = ((index - 1) % totalMedia) + 1;
     return `img/aw${validIndex}.jpg`;
   };
 
-  // Hook do monitorowania zmiany rozmiaru okna:
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 992);
@@ -49,6 +47,10 @@ const Hero = () => {
   const upcomingMediaIndex = (currentIndex % totalMedia) + 1;
 
   const handleMiniVdClick = () => {
+    // Na mobile – po kliknięciu sprawiamy, że miniaturka staje się (chwilowo) widoczna
+    if (isMobile) {
+      setShowMiniOnMobile(true);
+    }
     setHasClicked(true);
     setCurrentIndex(upcomingMediaIndex);
   };
@@ -60,11 +62,11 @@ const Hero = () => {
     }
   }, [loadedAssets]);
 
-  // Animacje GSAP po kliknięciu
   useGSAP(
     () => {
       if (hasClicked) {
         gsap.set("#next-video", { visibility: "visible" });
+
         gsap.to("#next-video", {
           transformOrigin: "center center",
           scale: 1,
@@ -73,14 +75,18 @@ const Hero = () => {
           duration: 1,
           ease: "power1.inOut",
           onStart: () => {
-            // Jeśli mamy wideo, odtwarzamy
-            // Jeżeli to obraz, to nic nie robimy
             if (nextMediaRef.current?.tagName === "VIDEO") {
               nextMediaRef.current.play();
             }
           },
+          onComplete: () => {
+            if (isMobile) {
+              setShowMiniOnMobile(false);
+            }
+          },
         });
 
+        // Animacja "malejąca" / wchodząca dla #current-video
         gsap.from("#current-video", {
           transformOrigin: "center center",
           scale: 0,
@@ -112,7 +118,6 @@ const Hero = () => {
     });
   });
 
-  // Główne renderowanie
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
       {isLoading && (
@@ -132,11 +137,22 @@ const Hero = () => {
         className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75"
       >
         <div>
-          {/* Przycisk/miniatura do kolejnego wideo/obrazu */}
           <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
             <div
               onClick={handleMiniVdClick}
-              className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
+              className={`
+                origin-center
+                transition-all
+                duration-500
+                ease-in
+                ${
+                  isMobile
+                    ? showMiniOnMobile
+                      ? "scale-100 opacity-100 pointer-events-auto"
+                      : "scale-50 opacity-0 pointer-events-auto"
+                    : "scale-50 opacity-0 hover:scale-100 hover:opacity-100"
+                }
+              `}
             >
               {isMobile ? (
                 <img
